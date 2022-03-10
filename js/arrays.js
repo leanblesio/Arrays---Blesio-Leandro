@@ -1,3 +1,12 @@
+
+/* Vamos a hacerlo bien y pongamos un versionado. hay un txt con explicacion.
+   
+    Alumno: Leando Blesio
+    Proyecto: Arrays
+    Version: v1.0.0
+
+*/
+
 console.log('Desafio Arrays - Blesio Leandro')
 
 class Producto{
@@ -13,24 +22,41 @@ class Producto{
          this.stockBotellas = this.stock * this.cantXbulto;
      }
 }
-
+ //sumamos loop en retorno 
 function Validation(userInput, type)
-{
-    if(userInput === '' && type === 'string'){
+{ debugger
+    //nuestra variable interna es equivalente al input. Si esta mal la vamos a resignificar. Sino la retornamos como viene
+    let newRequest = userInput; 
+
+    if(userInput === '' && type == 'string'){
         alert('Nombre ingresado invalido')
+        //va a entrar a la misma funcion el dato que pedimos y pasa las validaciones hechas.
+        //(lo hago un cacho verboso para que se pueda seguir paso a paso)
+        newRequest = prompt("reingrese Nombre") // ahora el userInput es el nuevo prompt
+        Validation(newRequest, 'string')
     }
-    if(userInput === '' && type === 'number'){
+    //Agregamos el caso NaN
+    if(userInput === '' || userInput === NaN &&  type == 'number'){
         alert('Numero ingresado invalido')
-
+        newRequest = prompt(" reingrese Cantidad x bulto")
+        Validation(newRequest, 'number')
     }
-    if((userInput != 'pead' || userInput != 'pet') && type === 'material'){
+    //OJO!! el usuario como sabe que tiene que poner esas opciones?
+    //2do: "&& type" no esta entrando para general solo en conbinacion con pet. 
+    //3ro: tu if siempre se va a ejecutar ya que si escribis pead va a entrar a != pet y al reves tambien
+    //podes anidarlo o hacer una variable bool para material 
+    // let boolMaterial =  'pead' || 'pet' <-- ahi seria true siempre que cumpla alguno de esos 2
+    if((userInput != 'pead' && type == 'material') || (userInput != 'pet' && type == 'material')){
         alert('Material ingresado invalido. Ingrese "pead" o pet"')
+        newRequest = prompt(" reingrese Material")
+        Validation(newRequest, 'material')
     }
 
+    return newRequest;
 }
 
-function AgregarProducto(entrada){
-    entrada.nombre = Validation(prompt('Nombre invalido: '))
+function AgregarProducto(entrada){      //Ya de uno invalido?
+    entrada.nombre = Validation(prompt('Nombre invalido: '), "string")
     entrada.cantXbulto = Validation(parseInt(prompt('Cantidad x bulto: '), 'number'))
     entrada.material = Validation(prompt('Material: '), 'material')
     entrada.stock = Validation(parseInt(prompt('Stock: '), 'number'))

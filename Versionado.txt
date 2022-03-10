@@ -1,0 +1,9 @@
+Explicacion de versionado  
+
+V1 = porque es la 1ra version que haces del proyecto. Cada refactorizacion le subis uno
+
+0  = Esto es para nuevas funcionalidades
+
+0 = es que se hizo una revisión del código por algun fallo
+
+Las siglas que se suelen usar son en respectivo orden X.Y.Z
